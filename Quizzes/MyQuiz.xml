@@ -1,0 +1,15 @@
+<QuizML name="Sample Quiz">
+	<Description>This is a sample quiz. There are some sample questions and such, but nothing too
+		difficult (it is, after all, a sample).</Description>
+	<Question type="multichoice" points="10">
+		<QuestionText answer="3">What was the color of George Washington's White Horse?</QuestionText>
+		<Answer name="1">Brown</Answer>
+		<Answer name="2">Black</Answer>
+		<Answer name="3">White</Answer>
+		<Answer name="4">Gray</Answer>
+	</Question>
+	<Question type="tf" points="3">
+		<QuestionText answer="f">The world is flat</QuestionText>
+	</Question>
+
+</QuizML>
