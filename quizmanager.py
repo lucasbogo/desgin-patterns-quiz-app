@@ -3,6 +3,12 @@ import os
 import quizparser
 import datetime
 
+# Single Responsibility Principle: this class manages the quizzes by listing them, taking them, and saving the results
+# Open/Closed Principle: this class is open for extension, but closed for modification
+# Liskov Substitution Principle: this class is a subclass of QuizParser
+# Interface Segregation Principle: this class does not implement any interfaces
+# Dependency Inversion Principle: this class depends on QuizParser, but not on any concrete classes
+
 
 class QuizManager:
     def __init__(self, quizfolder):

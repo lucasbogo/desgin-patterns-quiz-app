@@ -3,6 +3,7 @@ import sys
 # Random module to show quiz question in random order
 import random
 
+# factory method to create a question object based on the type
 
 class Quiz:
     def __init__(self):

@@ -1,5 +1,10 @@
 from quizmanager import QuizManager
 
+# This is the main class for the PyQuiz application
+# It contains the main menu and startup routines
+# factory pattern for creating questions and quizzes
+
+
 class QuizApp:
 
     # class value
