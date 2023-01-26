@@ -1,0 +1,8 @@
+*******************************************
+RESULTS for Lucas
+Date: 2023-01-26 15:32:57.568912
+ELAPSED TIME: 0:00:57
+QUESTIONS: 6 out of 8 correct
+SCORE: 29 points of possible 41
+*******************************************
+

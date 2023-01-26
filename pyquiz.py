@@ -6,22 +6,20 @@ from quizmanager import QuizManager
 
 
 class QuizApp:
-
-    # class value
-    QUIZ_FOLDER = "quizzes"
+    QUIZ_FOLDER = "Quizzes"
 
     def __init__(self):
         self.username = ""
-        # Create a quiz manager instance | this is where the quiz folder is passed in and kept
+        self.result = None
         self.qm = QuizManager(QuizApp.QUIZ_FOLDER)
 
     def startup(self):
         # print the greeting at startup
         self.greeting()
 
-        # TODO: ask the user for their name
+        # ask the user for their name
         self.username = input("What is your name? ")
-        print(f"Hello, {self.username}!")
+        print(f"Welcome, {self.username}!")
         print()
 
     def greeting(self):
@@ -49,64 +47,48 @@ class QuizApp:
     def menu(self):
         self.menu_header()
 
-        # TODO: get the user's selection and act on it. This loop will run until the user exits the app
+        # get the user's selection and act on it. This loop will
+        # run until the user exits the app
         selection = ""
         while (True):
-            selection = input("Please select an option: ")
+            selection = input("Selection? ")
 
-            # If the user enters nothing, ask them to try again
             if len(selection) == 0:
                 self.menu_error()
                 continue
 
-            # Convert the selection to upper case
-            selection = selection.upper()
-
-            # If the user enters E, exit the program
-            if selection[0] == "E":
+            selection = selection.capitalize()
+            if selection[0] == 'E':
                 self.goodbye()
                 break
-
-            # If the user enters M, repeat the menu
-            elif selection[0] == "M":
+            elif selection[0] == 'M':
                 self.menu_header()
                 continue
-
-            # If the user enters L, list the quizzes
-            elif selection[0] == "L":
-                print("\n List of quizzes available:")
-                # TODO: list the quizzes
+            elif selection[0] == 'L':
+                print("\nAvailable Quizzes Are:")
+                # list the available quizzes
                 self.qm.list_quizzes()
-                print("--------------------------\n")
+                print("----------------------------------\n")
                 continue
-
-            # If the user enters T, take a quiz
-            elif selection[0] == "T":
-                # exception handling for invalid quiz number
+            elif selection[0] == 'T':
                 try:
-                    quiz_number = int(
-                        input("Which quiz would you like to take? "))
-                    print(f"Taking quiz {quiz_number}")
+                    quiznum = int(input("Quiz number: "))
+                    print(f"You've selected quiz {quiznum}")
 
-                    # TODO: start the quiz
-                    self.qm.take_quiz(quiz_number, self.username)
+                    # start the quiz and get the results back
+                    self.result = self.qm.take_quiz(quiznum, self.username)
                     self.qm.print_results()
 
-                    # TODO: ask the user if they want to save the results
-                    dosave = input("Do you want to save your results? (Y/N) ")
+                    # ask the user if they want to save the results
+                    dosave = input("Save the results? (y/n): ")
                     dosave = dosave.capitalize()
-                    if len(dosave) > 0 and dosave[0] == "Y":
-                        self.qm.save_results(quiz_number, self.username)
-                        print("Results saved!")
-
+                    if (len(dosave) > 0 and dosave[0] == 'Y'):
+                        self.qm.save_results()
                 except:
                     self.menu_error()
-
-            # If the user enters anything else, show an error
             else:
+                # if we get here, the user didn't make a valid selection
                 self.menu_error()
-
-    # This is the entry point to the program
 
     def run(self):
         # Execute the startup routine - ask for name, print greeting, etc
